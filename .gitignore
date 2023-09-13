@@ -1,2 +1,3 @@
-/.denoTypes
-/deno.lock
+deno.lock
+dist
+node_modules
