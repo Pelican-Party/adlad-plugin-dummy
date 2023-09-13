@@ -7,7 +7,7 @@ export function dummyPlugin() {
 	/** @type {import("$adlad").AdLadPluginInitializeContext} */
 	let adLadContext;
 
-	// @ts-ignore
+	// @ts-ignore Untyped global function
 	globalThis.configureAdLad = () => {
 		settingsManager.openSettingsWindow();
 	};

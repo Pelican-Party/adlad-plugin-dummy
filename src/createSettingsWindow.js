@@ -17,7 +17,7 @@ export function createSettingsWindow(manager) {
 		return;
 	}
 
-	window.addEventListener("beforeunload", () => {
+	globalThis.addEventListener("beforeunload", () => {
 		w.close();
 	});
 
