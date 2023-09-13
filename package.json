@@ -1,0 +1,20 @@
+{
+	"name": "@adlad/plugin-dummy",
+	"version": "0.1.0",
+	"description": "AdLad plugin for showing dummy ads without any network requests.",
+	"main": "mod.js",
+	"types": "dist/adlad-plugin-dummy.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Pelican-Party/adlad-plugin-dummy.git"
+	},
+	"keywords": [
+		"ads"
+	],
+	"author": "Pelican Party Studios",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Pelican-Party/adlad-plugin-dummy/issues"
+	},
+	"homepage": "https://github.com/Pelican-Party/adlad-plugin-dummy#readme"
+}
