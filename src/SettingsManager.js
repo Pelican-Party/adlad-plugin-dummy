@@ -36,7 +36,7 @@ export class SettingsManager {
 		 */
 
 		this.settings = /** @type {const} @satisfies {Object.<string, SettingConfig>} */ ({
-			showFullScreenAdResult: {
+			"showFullScreenAdResult": {
 				label: "showFullScreenAd result",
 				description:
 					"The result that should be returned by a showFullScreenAd() call.\n'success' will result in the call succeeding without any errors.\nAny of the other options will result in an error of that type.\nAdditionally, 'not-supported' will set `AdLad.canShowFullScreenAd` to `false`, but requires a page reload.",
@@ -44,7 +44,7 @@ export class SettingsManager {
 				defaultValue: "success",
 				options: ["success", "adblocker", "not-supported", "time-constraint"],
 			},
-			showRewardedAdResult: {
+			"showRewardedAdResult": {
 				label: "showRewardedAd result",
 				description:
 					"The result that should be returned by a showRewardedAd() call.\n'success' will result in the call succeeding without any errors.\nAny of the other options will result in an error of that type.\nAdditionally, 'not-supported' will set `AdLad.canShowRewardedAd` to `false`, but requires a page reload.",
@@ -52,20 +52,20 @@ export class SettingsManager {
 				defaultValue: "success",
 				options: ["success", "user-dismissed", "adblocker", "not-supported", "time-constraint"],
 			},
-			fullScreenAdTimeConstraint: {
+			"fullScreenAdTimeConstraint": {
 				label: "showFullScreenAd time constraint",
 				description:
 					"Time in seconds indicating how frequently fullScreenAds should be shown.\nIf a call to showFullScreenAd() is made before the timer has finished,\nno ad will be shown.",
 				type: "number",
 				defaultValue: 60,
 			},
-			fullScreenAdPauseDuration: {
+			"fullScreenAdPauseDuration": {
 				label: "needsPause duration",
 				description: "How long needsPause will be true during ads in milliseconds.",
 				type: "number",
 				defaultValue: 1500,
 			},
-			fullScreenAdMuteDuration: {
+			"fullScreenAdMuteDuration": {
 				label: "needsMute duration",
 				description: "How long needsMute will be true during ads in milliseconds.",
 				type: "number",

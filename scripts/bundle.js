@@ -28,7 +28,11 @@ export function terser(minifyOptions = {}) {
 
 const bundle = await rollup({
 	input: "../mod.js",
-	plugins: [terser()],
+	plugins: [terser({
+		format: {
+			keep_quoted_props: true,
+		},
+	})],
 });
 
 await bundle.write({
