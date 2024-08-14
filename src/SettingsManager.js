@@ -57,7 +57,7 @@ export class SettingsManager {
 				description:
 					"Time in seconds indicating how frequently fullScreenAds should be shown.\nIf a call to showFullScreenAd() is made before the timer has finished,\nno ad will be shown.",
 				type: "number",
-				defaultValue: 60,
+				defaultValue: 5,
 			},
 			"fullScreenAdPauseDuration": {
 				label: "needsPause duration",
