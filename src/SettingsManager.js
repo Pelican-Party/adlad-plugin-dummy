@@ -14,25 +14,32 @@ export class SettingsManager {
 		 * @typedef SettingConfigBase
 		 * @property {string} label
 		 * @property {string} description
-		 * @property {"enum" | "number"} type
-		 * @property {readonly string[]} [options]
 		 */
 
 		/**
 		 * @typedef {SettingConfigBase & {
+		 *  type: "number";
 		 * 	defaultValue: number;
 		 * }} SettingConfigNumber
 		 */
 
 		/**
 		 * @typedef {SettingConfigBase & {
+		 *  type: "boolean";
+		 * 	defaultValue: boolean;
+		 * }} SettingConfigBoolean
+		 */
+
+		/**
+		 * @typedef {SettingConfigBase & {
+		 *  type: "enum";
 		 * 	defaultValue: string;
 		 * 	options?: readonly string[];
 		 * }} SettingConfigEnum
 		 */
 
 		/**
-		 * @typedef {SettingConfigNumber | SettingConfigEnum} SettingConfig
+		 * @typedef {SettingConfigNumber | SettingConfigEnum | SettingConfigBoolean} SettingConfig
 		 */
 
 		this.settings = /** @type {const} @satisfies {Object.<string, SettingConfig>} */ ({
@@ -55,9 +62,15 @@ export class SettingsManager {
 			"fullScreenAdTimeConstraint": {
 				label: "showFullScreenAd time constraint",
 				description:
-					"Time in seconds indicating how frequently fullScreenAds should be shown.\nIf a call to showFullScreenAd() is made before the timer has finished,\nno ad will be shown.",
+					"Time in seconds indicating how frequently fullScreenAds should be shown.\nIf a call to showFullScreenAd() is made before the timer has finished, no ad will be shown.",
 				type: "number",
 				defaultValue: 5,
+			},
+			"fullScreenAdTimeConstraintOnPageLoad": {
+				label: "showFullScreenAd time constraint on page load",
+				description: "When checked, the timer for showFullScreenAd() calls is started when the page loads.",
+				type: "boolean",
+				defaultValue: false,
 			},
 			"fullScreenAdPauseDuration": {
 				label: "needsPause duration",
@@ -84,11 +97,13 @@ export class SettingsManager {
 	}
 
 	/**
-	 * @template {"enum" | "number"} T
+	 * @template {"enum" | "number" | "boolean"} T
 	 * @typedef {T extends "enum" ?
 	 * 	string :
 	 * T extends "number" ?
 	 * 	number :
+	 * T extends "boolean" ?
+	 * 	boolean :
 	 * never} GetSettingType
 	 */
 

@@ -73,10 +73,17 @@ export function createSettingsWindow(manager) {
 		label.textContent = config.label + " ";
 		settingContainer.appendChild(label);
 
+		const value = manager.getSettingValue(settingId);
+
 		let inputEl;
 		if (config.type == "number") {
 			inputEl = doc.createElement("input");
 			inputEl.type = "number";
+			inputEl.value = String(value);
+		} else if (config.type == "boolean") {
+			inputEl = doc.createElement("input");
+			inputEl.type = "checkbox";
+			inputEl.checked = Boolean(value);
 		} else if (config.type == "enum") {
 			inputEl = doc.createElement("select");
 			if (config.options) {
@@ -87,18 +94,20 @@ export function createSettingsWindow(manager) {
 					inputEl.appendChild(el);
 				}
 			}
+			inputEl.value = String(value);
 		} else {
 			const unknownConfig = /** @type {{type: string}} */ (config);
 			throw new Error("Invalid setting type: " + unknownConfig.type);
 		}
-		const certainInputEl = inputEl;
-		const value = manager.getSettingValue(settingId);
-		inputEl.value = String(value);
 
+		const certainInputEl = inputEl;
 		inputEl.addEventListener("change", () => {
 			let value;
 			if (config.type == "number") {
 				value = parseInt(certainInputEl.value);
+			} else if (config.type == "boolean") {
+				const castInputEl = /** @type {HTMLInputElement} */ (certainInputEl);
+				value = castInputEl.checked;
 			} else if (config.type == "enum") {
 				value = certainInputEl.value;
 			} else {
@@ -112,6 +121,10 @@ export function createSettingsWindow(manager) {
 		descriptionEl.innerHTML = config.description.replaceAll("\n", "<br>");
 		settingContainer.appendChild(descriptionEl);
 
-		label.appendChild(inputEl);
+		if (config.type == "boolean") {
+			label.prepend(inputEl);
+		} else {
+			label.appendChild(inputEl);
+		}
 	}
 }

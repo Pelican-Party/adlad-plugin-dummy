@@ -35,7 +35,10 @@ export function dummyPlugin() {
 		}
 	}
 
-	let lastShowAdTime = performance.now();
+	let lastShowAdTime = -Infinity;
+	if (settingsManager.getSettingValue("fullScreenAdTimeConstraintOnPageLoad")) {
+		lastShowAdTime = performance.now();
+	}
 
 	const plugin = /** @type {const} @satisfies {import("$adlad").AdLadPlugin} */ ({
 		name: "dummy",
