@@ -8,9 +8,22 @@ export function createSettingsWindow(manager) {
 		const dialog = document.createElement("dialog");
 		dialog.id = "adladSettingsPopover";
 		dialog.innerHTML = `<h1>Failed to create settings window</h1>
-		<p>Please allow pop-ups.</p>`;
+		<p>Please allow pop-ups.</p>
+		<menu>
+			<button value="retry">Retry</button>
+			<button value="cancel">Cancel</button>
+		</menu>`;
 		document.body.appendChild(dialog);
 		dialog.showModal();
+		const retryButton = dialog.querySelector("button[value='retry']");
+		retryButton?.addEventListener("click", () => {
+			dialog.close();
+			createSettingsWindow(manager);
+		});
+		const cancelButton = dialog.querySelector("button[value='cancel']");
+		cancelButton?.addEventListener("click", () => {
+			dialog.close();
+		});
 		dialog.onclose = () => {
 			dialog.remove();
 		};
