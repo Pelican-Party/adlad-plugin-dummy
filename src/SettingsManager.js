@@ -84,6 +84,13 @@ export class SettingsManager {
 				type: "number",
 				defaultValue: 500,
 			},
+			"bannerAdsSupported": {
+				label: "Banner ads supported",
+				description:
+					"Whether calls to `showBannerAd()` should create banner elements. A reload is required to update the `canShowBannerAd` property.",
+				type: "boolean",
+				defaultValue: true,
+			},
 		});
 
 		/** @private @type {Map<SettingIds, any>} */
