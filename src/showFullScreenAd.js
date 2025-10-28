@@ -1,3 +1,5 @@
+import { createSettingsWindow } from "./createSettingsWindow.js";
+
 /**
  * @param {number} duration
  */
@@ -39,8 +41,13 @@ export async function showFullScreenAd(settingsManager, adLadContext, title) {
 		color: white;
 		align-items: center;
 		justify-content: center;
+		cursor: pointer;
 	`;
 	document.body.appendChild(fullScreenEl);
+
+	fullScreenEl.addEventListener("click", () => {
+		createSettingsWindow(settingsManager);
+	});
 
 	const contentEl = document.createElement("div");
 	fullScreenEl.appendChild(contentEl);
