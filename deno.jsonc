@@ -28,7 +28,7 @@
 			"dist"
 		],
 		"rules": {
-			"exclude": ["require-await", "no-window"]
+			"exclude": ["require-await", "no-window", "no-import-prefix"]
 		}
 	},
 	"importMap": "importmap.json"
