@@ -131,3 +131,5 @@ export function dummyPlugin() {
 
 	return plugin;
 }
+
+export default dummyPlugin;
