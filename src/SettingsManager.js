@@ -91,6 +91,13 @@ export class SettingsManager {
 				type: "boolean",
 				defaultValue: true,
 			},
+			"artificialStorageDelay": {
+				label: "Storage API delay",
+				description:
+					"Adds an artificial delay to the getStorageItem and setStorageItem calls. This allows you to debug race conditions.",
+				type: "number",
+				defaultValue: 0,
+			},
 		});
 
 		/** @private @type {Map<SettingIds, any>} */

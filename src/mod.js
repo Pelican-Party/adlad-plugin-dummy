@@ -44,12 +44,27 @@ export function dummyPlugin() {
 		lastShowAdTime = performance.now();
 	}
 
+	function waitForStorageDelay() {
+		const delay = settingsManager.getSettingValue("artificialStorageDelay");
+		return new Promise((resolve) => setTimeout(resolve, delay));
+	}
+
 	const plugin = /** @type {const} @satisfies {import("$adlad").AdLadPlugin} */ ({
 		name: "dummy",
 		manualNeedsMute: true,
 		manualNeedsPause: true,
 		initialize(ctx) {
 			adLadContext = ctx;
+		},
+		async setStorageItem(key, value) {
+			await waitForStorageDelay();
+			localStorage.setItem(key, JSON.stringify(value));
+		},
+		async getStorageItem(key) {
+			await waitForStorageDelay();
+			const str = localStorage.getItem(key);
+			if (!str) return undefined;
+			return JSON.parse(str);
 		},
 	});
 	const castPlugin = /** @type {import("$adlad").AdLadPlugin} */ (plugin);
